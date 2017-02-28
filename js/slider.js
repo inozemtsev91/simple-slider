@@ -13,6 +13,8 @@
             }
         }, options);
 
+        var ANIMATE_SPEED = 500;
+
         var $slider = $(container);
         var $sliderControlNav = $slider.find('.slider_control-nav');
         var $sliderArrowLeft = $slider.find('.slider_arrow__left');
@@ -48,9 +50,8 @@
             $sliderArrowRight.on('click', function () {
                 setSlide('next');
             });
-            $sliderControlNav.on('click', function (event) {
-                var currentNavItem = $sliderControlNavList.index(event.target);
-                setSlide(currentNavItem);
+            $sliderControlNav.on('click', '.slider_control-nav-item', function () {
+                setSlide($(this).index());
             });
         };
 
@@ -103,7 +104,7 @@
                         setTimeout(function () {
                             currentSlide = 0;
                             $sliderList.css('transform', 'translate(' + -(currentSlide + setting.items) * slideWidth + 'px)');
-                        }, 500);
+                        }, ANIMATE_SPEED);
                     }
 
                     if (!setting.loop && currentSlide === slidesCount - 1) {
@@ -132,7 +133,7 @@
                         setTimeout(function () {
                             currentSlide = slidesCount - 1;
                             $sliderList.css('transform', 'translate(' + -(currentSlide + setting.items) * slideWidth + 'px)');
-                        }, 500);
+                        }, ANIMATE_SPEED);
                     }
 
                     if (!setting.loop && currentSlide === 0) {
@@ -179,7 +180,7 @@
             setTimeout(function () {
                 $sliderList.removeClass('is-animating');
                 isAnimating = false;
-            }, 500);
+            }, ANIMATE_SPEED);
         };
 
         var setCurrentNavItem = function (slideNumber) {
