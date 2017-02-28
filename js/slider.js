@@ -129,7 +129,7 @@
                     } else if (setting.loop && currentSlide === 0) {
                         slideAnimate();
                         setCurrentNavItem(slidesCount - 1);
-                        $sliderList.css('transform', 'translate(0px)');
+                        $sliderList.css('transform', 'translate(' + -slideWidth * (setting.items - 1) + 'px)');
                         setTimeout(function () {
                             currentSlide = slidesCount - 1;
                             $sliderList.css('transform', 'translate(' + -(currentSlide + setting.items) * slideWidth + 'px)');
